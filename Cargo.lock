@@ -1276,7 +1276,7 @@ dependencies = [
 [[package]]
 name = "rocket"
 version = "0.5.0-rc.1"
-source = "git+https://github.com/SergioBenitez/Rocket#31d06ee714c7cdab1911a8cb8fd5f9e148cc201f"
+source = "git+https://github.com/SergioBenitez/Rocket#786db9b832b7edd91f143b24835677c69121a9bb"
 dependencies = [
  "async-stream",
  "async-trait",
@@ -1313,7 +1313,7 @@ dependencies = [
 [[package]]
 name = "rocket_codegen"
 version = "0.5.0-rc.1"
-source = "git+https://github.com/SergioBenitez/Rocket#31d06ee714c7cdab1911a8cb8fd5f9e148cc201f"
+source = "git+https://github.com/SergioBenitez/Rocket#786db9b832b7edd91f143b24835677c69121a9bb"
 dependencies = [
  "devise",
  "glob",
@@ -1328,7 +1328,7 @@ dependencies = [
 [[package]]
 name = "rocket_http"
 version = "0.5.0-rc.1"
-source = "git+https://github.com/SergioBenitez/Rocket#31d06ee714c7cdab1911a8cb8fd5f9e148cc201f"
+source = "git+https://github.com/SergioBenitez/Rocket#786db9b832b7edd91f143b24835677c69121a9bb"
 dependencies = [
  "cookie 0.15.0",
  "either",
