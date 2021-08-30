@@ -131,18 +131,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "03a5d7b21829bc7b4bf4754a978a241ae54ea55a40f92bb20216e54096f4b951"
 dependencies = [
  "percent-encoding",
- "time",
+ "time 0.2.26",
  "version_check",
 ]
 
 [[package]]
 name = "cookie"
-version = "0.15.0"
+version = "0.16.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ffdf8865bac3d9a3bde5bde9088ca431b11f5d37c7a578b8086af77248b76627"
+checksum = "188a7c2ae2a1026b9831889fd6461db5d33c4f6d54d6f862bd8b81a2fcefbdba"
 dependencies = [
  "percent-encoding",
- "time",
+ "time 0.3.2",
  "version_check",
 ]
 
@@ -158,7 +158,7 @@ dependencies = [
  "publicsuffix",
  "serde",
  "serde_json",
- "time",
+ "time 0.2.26",
  "url",
 ]
 
@@ -219,9 +219,9 @@ dependencies = [
 
 [[package]]
 name = "devise"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "411cf45ac38f00df3679689616649dc12607b846db171780bb790b514a042832"
+checksum = "50c7580b072f1c8476148f16e0a0d5dedddab787da98d86c5082c5e9ed8ab595"
 dependencies = [
  "devise_codegen",
  "devise_core",
@@ -229,9 +229,9 @@ dependencies = [
 
 [[package]]
 name = "devise_codegen"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2cf7081f06822f1787e29359354426132cf832cc977d7a8ff747848631462ad1"
+checksum = "123c73e7a6e51b05c75fe1a1b2f4e241399ea5740ed810b0e3e6cacd9db5e7b2"
 dependencies = [
  "devise_core",
  "quote",
@@ -239,9 +239,9 @@ dependencies = [
 
 [[package]]
 name = "devise_core"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "80c23631758736875d7ce08f847f296b4001b72cf90878e85b47df7ac5442147"
+checksum = "841ef46f4787d9097405cac4e70fb8644fc037b526e8c14054247c0263c400d0"
 dependencies = [
  "bitflags",
  "proc-macro2",
@@ -696,9 +696,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-version = "0.2.93"
+version = "0.2.101"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9385f66bf6105b241aa65a61cb923ef20efc665cb9f9bb50ac2f0c4b7f378d41"
+checksum = "3cb00336871be5ed2c8ed44b60ae9959dc5b9f08539422ed43f09e34ecaeba21"
 
 [[package]]
 name = "lock_api"
@@ -1248,7 +1248,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_urlencoded",
- "time",
+ "time 0.2.26",
  "tokio",
  "tokio-native-tls",
  "url",
@@ -1276,7 +1276,7 @@ dependencies = [
 [[package]]
 name = "rocket"
 version = "0.5.0-rc.1"
-source = "git+https://github.com/SergioBenitez/Rocket#786db9b832b7edd91f143b24835677c69121a9bb"
+source = "git+https://github.com/SergioBenitez/Rocket#8cae077ba1d54b92cdef3e171a730b819d5eeb8e"
 dependencies = [
  "async-stream",
  "async-trait",
@@ -1301,7 +1301,7 @@ dependencies = [
  "serde",
  "state",
  "tempfile",
- "time",
+ "time 0.3.2",
  "tokio",
  "tokio-stream",
  "tokio-util",
@@ -1313,7 +1313,7 @@ dependencies = [
 [[package]]
 name = "rocket_codegen"
 version = "0.5.0-rc.1"
-source = "git+https://github.com/SergioBenitez/Rocket#786db9b832b7edd91f143b24835677c69121a9bb"
+source = "git+https://github.com/SergioBenitez/Rocket#8cae077ba1d54b92cdef3e171a730b819d5eeb8e"
 dependencies = [
  "devise",
  "glob",
@@ -1328,17 +1328,15 @@ dependencies = [
 [[package]]
 name = "rocket_http"
 version = "0.5.0-rc.1"
-source = "git+https://github.com/SergioBenitez/Rocket#786db9b832b7edd91f143b24835677c69121a9bb"
+source = "git+https://github.com/SergioBenitez/Rocket#8cae077ba1d54b92cdef3e171a730b819d5eeb8e"
 dependencies = [
- "cookie 0.15.0",
+ "cookie 0.16.0-rc.1",
  "either",
  "http",
  "hyper",
  "indexmap",
  "log",
  "memchr",
- "mime",
- "parking_lot",
  "pear",
  "percent-encoding",
  "pin-project-lite",
@@ -1348,7 +1346,7 @@ dependencies = [
  "smallvec",
  "stable-pattern",
  "state",
- "time",
+ "time 0.3.2",
  "tokio",
  "tokio-rustls",
  "uncased",
@@ -1761,9 +1759,20 @@ dependencies = [
  "libc",
  "standback",
  "stdweb",
- "time-macros",
+ "time-macros 0.1.1",
  "version_check",
  "winapi",
+]
+
+[[package]]
+name = "time"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3e0a10c9a9fb3a5dce8c2239ed670f1a2569fcf42da035f5face1b19860d52b0"
+dependencies = [
+ "itoa",
+ "libc",
+ "time-macros 0.2.2",
 ]
 
 [[package]]
@@ -1775,6 +1784,12 @@ dependencies = [
  "proc-macro-hack",
  "time-macros-impl",
 ]
+
+[[package]]
+name = "time-macros"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72c7ca5e81982d152f0788b131ebf96cc4bbd1b4575a7ed51f0f6fc866a05fdb"
 
 [[package]]
 name = "time-macros-impl"
