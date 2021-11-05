@@ -97,8 +97,7 @@ fn punch_clock_get() -> &'static str {
 #[post("/aggietime/punch", data = "<punchform>")]
 async fn punch_clock(punchform: Form<PunchForm>) -> String {
     let client = &new_client();
-    let r_login = login(&punchform.username, &punchform.password, client).await;
-    let r_login = match r_login {
+    let r_login = match login(&punchform.username, &punchform.password, client).await {
         Ok(r_login) => r_login,
         Err(error_msg) => return error_msg,
     };
@@ -119,10 +118,10 @@ async fn punch_clock(punchform: Form<PunchForm>) -> String {
         .await;
     let result = match r_p_punch {
         Ok(_) => format!("Success clocking {}!", punchform.inout.to_ascii_lowercase()),
-        Err(_) => String::from(format!(
+        Err(_) => format!(
             "Failed to clocked {}.",
             punchform.inout.to_ascii_lowercase()
-        )),
+        ),
     };
     result
 }
@@ -155,10 +154,8 @@ async fn get_status(client: &Client, r_text: &str) -> ClockStatus {
     }
 }
 
-/*#[post("/aggietime/update", data = "<updateform>")]
-async fn update_shift(updateform: Form<UpdateForm>, state: State<'_, Session>) -> String {
-
-}*/
+#[post("/aggietime/update", data = "<updateform>")]
+async fn update_shift(updateform: Form<UpdateForm>, state: State<'_, Session>) -> String {}
 
 async fn login(
     username: &str,
