@@ -3,7 +3,7 @@
 #![allow(unused_variables)]
 #[macro_use]
 extern crate rocket;
-use futures::future::{join_all, try_join_all};
+use futures::future::try_join_all;
 use reqwest::header::{
     HeaderMap, HeaderValue, ACCEPT, ACCEPT_ENCODING, ACCEPT_LANGUAGE, CONNECTION, CONTENT_LENGTH,
     CONTENT_TYPE, HOST, ORIGIN, REFERER, USER_AGENT,
@@ -45,45 +45,45 @@ async fn rocket() -> _ {
     rocket::build().mount("/", routes![punch_clock, punch_clock_get, status, outdated])
 }
 
-#[post("/aggietime/get_shift", data = "<statusform>")]
-async fn get_shift(statusform: Form<StatusForm>) -> String {
-    let client = &new_client();
-    let r_login: reqwest::Response;
-    let r_login = login(&statusform.username, &statusform.password, client).await;
-    let r_login = match r_login {
-        Ok(r_login) => r_login,
-        Err(error_msg) => return error_msg,
-    };
-    let text = r_login.text().await.unwrap();
-    let mut futures = vec![parse_attr(&text, "input", "name", "id", "value")]; // shift_id
-    futures.push(parse_attr(
-        &text,
-        "span",
-        "class",
-        "in-date smaller",
-        "inner",
-    )); // date
-    futures.push(parse_attr(&text, "span", "class", "in-time bold", "inner")); // time_in
-    futures.push(parse_attr(&text, "span", "class", "out-time bold", "inner")); // time_out
-    let elements = join_all(futures).await;
-    let shift_id = match &elements[0] {
-        Ok(shift_id) => shift_id,
-        Err(error_msg) => return String::from(error_msg),
-    };
-    let event_date = match &elements[1] {
-        Ok(event_date) => event_date,
-        Err(error_msg) => return String::from(error_msg),
-    };
-    let time_in = match &elements[2] {
-        Ok(time_in) => time_in,
-        Err(error_msg) => return String::from(error_msg),
-    };
-    let time_out = match &elements[3] {
-        Ok(time_out) => time_out,
-        Err(error_msg) => return String::from(error_msg),
-    };
-    format!("{}: {}: {}: {}", event_date, shift_id, time_in, time_out)
-}
+// #[post("/aggietime/get_shift", data = "<statusform>")]
+// async fn get_shift(statusform: Form<StatusForm>) -> String {
+//     let client = &new_client();
+//     let r_login: reqwest::Response;
+//     let r_login = login(&statusform.username, &statusform.password, client).await;
+//     let r_login = match r_login {
+//         Ok(r_login) => r_login,
+//         Err(error_msg) => return error_msg,
+//     };
+//     let text = r_login.text().await.unwrap();
+//     let mut futures = vec![parse_attr(&text, "input", "name", "id", "value")]; // shift_id
+//     futures.push(parse_attr(
+//         &text,
+//         "span",
+//         "class",
+//         "in-date smaller",
+//         "inner",
+//     )); // date
+//     futures.push(parse_attr(&text, "span", "class", "in-time bold", "inner")); // time_in
+//     futures.push(parse_attr(&text, "span", "class", "out-time bold", "inner")); // time_out
+//     let elements = join_all(futures).await;
+//     let shift_id = match &elements[0] {
+//         Ok(shift_id) => shift_id,
+//         Err(error_msg) => return String::from(error_msg),
+//     };
+//     let event_date = match &elements[1] {
+//         Ok(event_date) => event_date,
+//         Err(error_msg) => return String::from(error_msg),
+//     };
+//     let time_in = match &elements[2] {
+//         Ok(time_in) => time_in,
+//         Err(error_msg) => return String::from(error_msg),
+//     };
+//     let time_out = match &elements[3] {
+//         Ok(time_out) => time_out,
+//         Err(error_msg) => return String::from(error_msg),
+//     };
+//     format!("{}: {}: {}: {}", event_date, shift_id, time_in, time_out)
+// }
 
 #[post("/aggietime")]
 async fn outdated() -> &'static str {
@@ -154,8 +154,8 @@ async fn get_status(client: &Client, r_text: &str) -> ClockStatus {
     }
 }
 
-#[post("/aggietime/update", data = "<updateform>")]
-async fn update_shift(updateform: Form<UpdateForm>, state: State<'_, Session>) -> String {}
+// #[post("/aggietime/update", data = "<updateform>")]
+// async fn update_shift(updateform: Form<UpdateForm>, state: State<'_, Session>) -> String {}
 
 async fn login(
     username: &str,
